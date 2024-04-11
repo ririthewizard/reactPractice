@@ -2,13 +2,15 @@ import { useState } from "react";
 
 export default function Home() {
 
-  function ListItems({ints}) {
+  function ListItems({ints, addValue}) {
+    const increment = 4;
     return (
       <>
+        <button onClick={() => addValue(increment)}>Add Item</button>
         {
           ints.map(id => {
             return (
-              <li>{id}</li>
+              <li key={id}>{id}</li>
             )
           })
         }
@@ -18,10 +20,16 @@ export default function Home() {
 
   //const ints = [1, 2, 3];
 
-  const[ints, setInts] = useState([1,2,3]);
+  const[ints, setInts] = useState([1,2,3,4]);
+
+  function addValue(incrementValue) {
+    const newVal = Math.max(...ints) + incrementValue;
+    setInts([...ints, newVal]);
+  }
+
   return (
     <ul>
-      <ListItems ints={ints} />
+      <ListItems ints={ints} addValue={addValue} />
     </ul>
   );
 }
