@@ -1,11 +1,16 @@
 export default function Home() {
 
   function ListItems() {
+    const ints = [1, 2, 3];
     return (
       <>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
+        {
+          ints.map(id => {
+            return (
+              <li>{id}</li>
+            )
+          })
+        }
       </>
     )
   }
